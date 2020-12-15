@@ -1,4 +1,4 @@
-# Overview
+## About
 This is a todo application which is powered by reactjs and blueprintjs.
 
 ## Live
