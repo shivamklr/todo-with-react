@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Card, Button } from "@blueprintjs/core";
+import { Card, Button, Alert, Intent } from "@blueprintjs/core";
 import Form from "./Form";
 function Main() {
     const [todoInput, settodoInput] = useState("");
     const [todos, settodos] = useState([]);
+    const [isOpen, setisOpen] = useState(false);
+    const [serial, setserial] = useState(-1);
     const inputHandler = (e) => {
         settodoInput(e.target.value);
     };
@@ -13,6 +15,11 @@ function Main() {
     };
     const deleteHandler = (index) => {
         settodos(todos.filter((todo, idx) => idx !== index));
+        setisOpen(false);
+    };
+    const openHandler = (bool, index) => {
+        setisOpen(bool);
+        setserial(index);
     };
     return (
         <div className="Main">
@@ -27,10 +34,24 @@ function Main() {
                     <Button
                         icon="trash"
                         key={index}
-                        onClick={() => deleteHandler(index)}
+                        onClick={() => openHandler(true, index)}
                     ></Button>
                 </Card>
             ))}
+            <Alert
+                cancelButtonText="Cancel"
+                confirmButtonText="Delete Permanently"
+                icon="trash"
+                intent = {Intent.DANGER}
+                onConfirm={() => deleteHandler(serial)}
+                onCancel={() => openHandler(false, -1)}
+                isOpen={isOpen}
+            >
+                <p>
+                    Are you sure you want to delete this todo? You will NOT be
+                    able to restore it.🤨
+                </p>
+            </Alert>
         </div>
     );
 }
