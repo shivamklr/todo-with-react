@@ -1,5 +1,4 @@
 import React from "react";
-import "../index.css";
 function Header() {
     return (
         <div className="Header bp3-callout bp3-intent-success">

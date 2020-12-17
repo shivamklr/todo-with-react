@@ -2,7 +2,7 @@ import React from "react";
 import { InputGroup, Button } from "@blueprintjs/core";
 function Form({ input, submit, inputText }) {
     const enterHandler = (e) => {
-        if(e.key === "Enter"){
+        if (e.key === "Enter") {
             submit();
         }
     };

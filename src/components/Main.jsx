@@ -38,11 +38,13 @@ function Main() {
                     ></Button>
                 </Card>
             ))}
-            <Alert
+            <Alert //FIXME: using old context api?
+                className = "Alert"
+                canEscapeKeyCancel="true"
                 cancelButtonText="Cancel"
                 confirmButtonText="Delete Permanently"
                 icon="trash"
-                intent = {Intent.DANGER}
+                intent={Intent.DANGER}
                 onConfirm={() => deleteHandler(serial)}
                 onCancel={() => openHandler(false, -1)}
                 isOpen={isOpen}
